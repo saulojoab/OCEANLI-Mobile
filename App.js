@@ -1,89 +1,53 @@
-'use strict';
-import React, { PureComponent } from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RNCamera } from 'react-native-camera';
+import Page1 from './Page1';
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+ 
+import SwipeableViews from 'react-swipeable-views-native';
 
-export default class ExampleApp extends PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <RNCamera
-          ref={ref => {
-            this.camera = ref;
-          }}
-          style={styles.preview}
-          flashMode={RNCamera.Constants.FlashMode.off}
-          autoFocus={RNCamera.Constants.AutoFocus.on}
-          androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-          onGoogleVisionBarcodesDetected={({ barcodes }) => {
-            console.log(barcodes);
-          }}
-        />
-        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-          <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-            <View style={styles.outerBt}>
-              <View style={styles.space}>
-
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
-
-  takePicture = async() => {
-    if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      console.log(data.uri);
-    }
-  };
-}
-
+ 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
+  slideContainer: {
+    flex: 1
   },
-  outerBt: {
-    backgroundColor: 'white',
-    borderRadius: 100,
-    height: 30,
-    width: 25,
-    zIndex: -10
+  slide: {
+    flex: 1
   },
-  space: {
-    borderRadius: 100,
-    height: 30,
-    width: 25,
-    backgroundColor: 'blue',
-    justifyContent: 'center',
+  slide1: {
+    backgroundColor: '#FEA900',
   },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+  slide2: {
+    backgroundColor: '#B3DC4A',
   },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 100,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
+  slide3: {
+    backgroundColor: '#6AC0FF',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
+ 
+const MyComponent = () => (
+  <SwipeableViews style={styles.slideContainer}>
+    <View style={[styles.slide]}>
+      <Page1>
+      </Page1>
+    </View>
+    <View style={[styles.slide, styles.slide2]}>
+      <Text style={styles.text}>
+        slide n°2
+      </Text>
+    </View>
+    <View style={[styles.slide, styles.slide3]}>
+      <Text style={styles.text}>
+        slide n°3
+      </Text>
+    </View>
+  </SwipeableViews>
+);
+ 
+export default MyComponent;

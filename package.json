@@ -12,7 +12,8 @@
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.2",
-    "react-native-camera": "^3.8.0"
+    "react-native-camera": "^3.8.0",
+    "react-swipeable-views-native": "^0.13.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
