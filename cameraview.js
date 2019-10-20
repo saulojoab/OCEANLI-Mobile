@@ -66,27 +66,18 @@ export default class CameraView extends PureComponent {
         type: data.type,
         name: data.fileName
       });
-      geolocation.getCurrentPosition(
-          async (position) => {
-              console.log(position);
-              await fetch('http://10.50.4.123:3400/photos/upload', {
-                method: 'POST',
-                headers: 'Content-type: application/json',
-                body: {
-                  body
-                }
-              }).then(() => {
-                alert("Image Uploaded", "You did it! Congratulations! The environment thanks you!")
-              }).catch((err) => {
-                alert("Error", "Something went wrong when uploading the image");
-              })
-          },
-          (error) => {
-              // See error code charts below.
-              console.log(error.code, error.message);
-          },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-      );
+
+      await fetch('http://10.50.4.123:3400/photos/upload', {
+        method: 'POST',
+        'Content-Type': 'multipart/form-data',
+        body: {
+          body
+        }
+      }).then(() => {
+        alert("Image Uploaded", "You did it! Congratulations! The environment thanks you!")
+      }).catch((err) => {
+        alert("Error", "Something went wrong when uploading the image");
+      })
       
       this.setState({loading: false});
       console.log(data.uri);
