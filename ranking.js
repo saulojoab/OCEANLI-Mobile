@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default function Ranking(){
     return(
@@ -31,11 +32,33 @@ export default function Ranking(){
                     </Text>
                 </View>
             </View>
-            <View>
-                <Text>Graph</Text>
+            <View style={styles.graphContainer}>
+                <View>
+                    <Text style={{fontSize: 30, fontWeight: 'bold', color: 'white'}}>                    
+                        Sua colaboração
+                    </Text>
+                </View>
+                <View styles={styles.chart}>
+                    <Text>GRAFICO FODAAAA</Text>
+                </View>
             </View>
-            <View>
-                <Text>Points</Text>
+            <View style={styles.pointsContainer}>
+                <View style={{
+                    flex: 0.3, 
+                    height: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    margin: 20
+                    }}>
+                    <Text style={{fontSize: 40, color: 'white', fontWeight: 'bold'}}>
+                        <FontAwesome5 name={'angle-left'} size={40}/>
+                    </Text>
+                </View>
+                <View style={{flex: 0.7, alignItems: 'flex-start'}}>
+                    <Text style={{fontSize: 40, color: 'white', fontWeight: 'bold'}}>                   
+                        1200 pts
+                    </Text>
+                </View>
             </View>
         </View>
     )
@@ -46,7 +69,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '#436cce',
-        flex: 0.8
+        flex: 1,
+        width: Dimensions.get('screen').width,
+        height: Dimensions.get('screen').height
     },
     header: {
         flex: 0.2,
@@ -89,5 +114,20 @@ const styles = StyleSheet.create({
         height: 90,
         backgroundColor: 'white',
         borderRadius: 100
+    },
+    graphContainer: {
+        flex: 0.6
+    },
+    chart: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pointsContainer: {
+        flex: 0.2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
