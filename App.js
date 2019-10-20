@@ -1,4 +1,5 @@
 import Page1 from './Page1';
+import Ranking from './ranking';
 import React from 'react';
 import {
   StyleSheet,
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
 });
  
 const MyComponent = () => (
-  <SwipeableViews style={styles.slideContainer}>
+  <SwipeableViews index={2} style={styles.slideContainer}>
     <View style={[styles.slide]}>
       <Page1>
       </Page1>
@@ -43,9 +44,7 @@ const MyComponent = () => (
       </Text>
     </View>
     <View style={[styles.slide, styles.slide3]}>
-      <Text style={styles.text}>
-        slide n°3
-      </Text>
+      <Ranking/>
     </View>
   </SwipeableViews>
 );
