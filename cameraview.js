@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
-export default class ExampleApp extends PureComponent {
+export default class CameraView extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
@@ -30,7 +30,7 @@ export default class ExampleApp extends PureComponent {
                 console.log(barcodes);
             }}
             />
-        <View style={{width: Dimensions.get('screen').width, height: Dimensions.get('screen').height ,backgroundColor: 'rgba(0,0,0,0.1)',position: 'absolute',top: 0, right: 0, left: 0, bottom: 0}}></View>
+        <View style={{width: Dimensions.get('screen').width, height: Dimensions.get('screen').height ,backgroundColor: 'rgba(67,108,206,0.3)',position: 'absolute',top: 0, right: 0, left: 0, bottom: 0}}></View>
         <View style={{ flex: 0, bottom: 0, left: 0, right:0, position: 'absolute', flexDirection: 'row', justifyContent: 'center' }}>
           <View style={styles.outerBt}>
               <View style={styles.space}>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   outerBt: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(500,500,500,0.7)',
     borderRadius: 100,
     height: 70,
     width: 70,
@@ -73,14 +73,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     height: 55,
     width: 55,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(500,500,500,0.01)',
     justifyContent: 'center',
   },
   space_1: {
     borderBottomEndRadius: 85,
     height:8,
-    width:8
-
+    width:8,
   },
   preview: {
     flex: 1,
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(500,500,500,0.7)',
     borderRadius: 100,
     padding: 20,
     paddingHorizontal: 20,
