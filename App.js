@@ -9,6 +9,7 @@ import Swiper from 'react-native-swiper'
 
 import CameraView from './cameraview';
 import Profile from './profile';
+import Ranking from './Page2';
 
 
 const styles = StyleSheet.create({
@@ -35,7 +36,7 @@ export default function Slider() {
     activeDot={<View style={{backgroundColor: 'white', width: 10, height: 10, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
     style={styles.slideContainer}>
         <View style={styles.slide}>
-          <Text>a</Text>
+          <Ranking/>
         </View>
         <View style={styles.slide}>
           <CameraView/>

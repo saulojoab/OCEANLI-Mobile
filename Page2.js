@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-export default class HelloWorldApp extends Component {
+export default class Ranking extends Component {
   render() {
     return (
       <View style={styles.cont}>
         <Image source={require('./img/rank.png')} style={styles.image}></Image>
       </View>
-      
     );
   }
 }
