@@ -2,8 +2,16 @@
 import React, { PureComponent } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import Loading from './components/loading';
 
 export default class CameraView extends PureComponent {
+  constructor(props){
+    super(props);
+    this.state = {
+      loading: false
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -41,6 +49,7 @@ export default class CameraView extends PureComponent {
               </View>
           </View>
         </View>
+        {this.state.loading ? <Loading/> : <View></View>}
       </View>
     );
   }
@@ -48,7 +57,16 @@ export default class CameraView extends PureComponent {
   takePicture = async() => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
+      this.setState({loading: true});
+      await fetch('http://localhost:3400/photos/upload', {
+        method: 'POST',
+        headers: 'Content-type: application/json',
+        body: {
+          
+        }
+      })
       const data = await this.camera.takePictureAsync(options);
+      this.setState({loading: false});
       console.log(data.uri);
     }
   };
