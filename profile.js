@@ -1,15 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
     LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
   } from "react-native-chart-kit";
-import Dots from './components/dots';
 
 export default function Ranking(){
     return(
@@ -19,9 +13,6 @@ export default function Ranking(){
                     <Text style={{fontSize: 30, fontWeight: 'bold', color: 'white'}}>
                         Perfil
                     </Text>
-                </View>
-                <View style={styles.dotdotdot}>
-                    <Dots selected={0}/>
                 </View>
             </View>
             <View style={styles.userInfo}>
@@ -69,7 +60,7 @@ export default function Ranking(){
                         ]
                         }}
                         width={Dimensions.get("window").width} // from react-native
-                        height={310}
+                        height={380}
                         yAxisLabel={"$"}
                         chartConfig={{
                         backgroundColor: "#436cce",
@@ -95,7 +86,7 @@ export default function Ranking(){
                     />
                 </View>
             </View>
-            <View style={styles.pointsContainer}>
+            <TouchableOpacity style={styles.pointsContainer}>
                 <View style={{
                     flex: 0.3, 
                     height: '100%',
@@ -112,7 +103,7 @@ export default function Ranking(){
                         1200 pts
                     </Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -124,7 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#436cce',
         flex: 1,
         width: Dimensions.get('screen').width,
-        height: Dimensions.get('screen').height
+        height: Dimensions.get('screen').height,
     },
     header: {
         flex: 0.15,
@@ -134,15 +125,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        flex: 0.3,
+        flex: 1,
         alignItems: 'center',
         height: '100%',
+        paddingLeft: 30,
         justifyContent: 'center',
-        alignItems: 'center'
-    },
-    dotdotdot: {
-        flex: 0.7,
-        alignItems: 'center'
+        alignItems: 'flex-start'
     },
     userInfo: {
         display: 'flex',
