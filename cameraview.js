@@ -58,14 +58,36 @@ export default class CameraView extends PureComponent {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       this.setState({loading: true});
-      await fetch('http://localhost:3400/photos/upload', {
-        method: 'POST',
-        headers: 'Content-type: application/json',
-        body: {
-          
-        }
-      })
       const data = await this.camera.takePictureAsync(options);
+      const body = new FormData();
+      body.append('name', 'avatar');
+      body.append('fileData', {
+        uri : data.uri,
+        type: data.type,
+        name: data.fileName
+      });
+      geolocation.getCurrentPosition(
+          async (position) => {
+              console.log(position);
+              await fetch('http://10.50.4.123:3400/photos/upload', {
+                method: 'POST',
+                headers: 'Content-type: application/json',
+                body: {
+                  body
+                }
+              }).then(() => {
+                alert("Image Uploaded", "You did it! Congratulations! The environment thanks you!")
+              }).catch((err) => {
+                alert("Error", "Something went wrong when uploading the image");
+              })
+          },
+          (error) => {
+              // See error code charts below.
+              console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
+      
       this.setState({loading: false});
       console.log(data.uri);
     }
