@@ -1,6 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph,
+    StackedBarChart
+  } from "react-native-chart-kit";
+import Dots from './components/dots';
 
 export default function Ranking(){
     return(
@@ -12,9 +21,7 @@ export default function Ranking(){
                     </Text>
                 </View>
                 <View style={styles.dotdotdot}>
-                    <Text style={{fontSize: 30, fontWeight: 'bold', color: 'white'}}>
-                     . . .
-                    </Text>
+                    <Dots selected={0}/>
                 </View>
             </View>
             <View style={styles.userInfo}>
@@ -33,13 +40,59 @@ export default function Ranking(){
                 </View>
             </View>
             <View style={styles.graphContainer}>
-                <View>
+                <View style={{paddingLeft: 25, padding: 10}}>
                     <Text style={{fontSize: 30, fontWeight: 'bold', color: 'white'}}>                    
                         Sua colaboração
                     </Text>
                 </View>
                 <View styles={styles.chart}>
-                    <Text>GRAFICO FODAAAA</Text>
+                    <LineChart
+                        data={{
+                        labels: ["Janeiro", "Março", "Maio","Julho", "Setembro", "Novembro"],
+                        datasets: [
+                            {
+                            data: [
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100,
+                                Math.random() * 100
+                            ]
+                            }
+                        ]
+                        }}
+                        width={Dimensions.get("window").width} // from react-native
+                        height={310}
+                        yAxisLabel={"$"}
+                        chartConfig={{
+                        backgroundColor: "#436cce",
+                        backgroundGradientFrom: "#436cce",
+                        backgroundGradientTo: "#436cce",
+                        decimalPlaces: 2, // optional, defaults to 2dp
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        style: {
+                            borderRadius: 16,
+                        },
+                        propsForDots: {
+                            r: "6",
+                            strokeWidth: "2",
+                            stroke: "#ffffff"
+                        }
+                        }}
+                        bezier
+                        style={{
+                            marginVertical: 8,
+                            borderRadius: 16,
+                        }}
+                    />
                 </View>
             </View>
             <View style={styles.pointsContainer}>
@@ -74,7 +127,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('screen').height
     },
     header: {
-        flex: 0.2,
+        flex: 0.15,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -101,7 +154,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 15
+        padding: 15
     },
     userDataContainer: {
         flex: 0.7,
